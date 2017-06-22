@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import businessmap.models.DepartmentIF;
 import java.io.Console;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 /**
  *
@@ -27,13 +28,16 @@ public class BusinessMapGUI {
     public static void main(String[] args) throws SQLException {
         dbConnection dbCon = new dbConnection();
         
-        InputStreamReader cin = new InputStreamReader(System.in);
-        dbCon.setPassword(cin.toString());
+        //needs to be implemented correctly
+        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        System.out.println("Enter a db password: ");
+        dbCon.setPassword(reader.toString());
+        reader.nextLine();
+
         
         mainFrame test = new mainFrame();
         test.setVisible(true);
 
-       
 
         // TODO code application logic here
   
@@ -59,5 +63,5 @@ public class BusinessMapGUI {
         //dbCon.dropBusinessTable();
 
     }
-    
+
 }
