@@ -26,9 +26,11 @@ public interface ControlIf {
     public Department getSelectedDepartment();
     public Employee getSelectedEmployee();
     
-    public List<Department>getDepartments();
+    public List<Department>getBusDepartments();
     public List<Employee>getDeptEmployees();
     public List<Business>getBusinesses();
+    public List<Department>getAllDepartments();
+
     
     
     //MIST
@@ -40,6 +42,8 @@ public interface ControlIf {
     //DB ACCESS
     public Employee getEmployee(int idNum);
     public void populateBusinesses();
+    //private void populateDepartments();
+
 
     
     public Employee addEmployee(Department aDepartment, Business aBusiness, String firstName, String secondName);

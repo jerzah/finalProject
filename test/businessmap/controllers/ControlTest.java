@@ -113,7 +113,7 @@ public class ControlTest {
         assertNotNull(this.testControl);
         String testName = "Adam";
         this.testControl.setSelectedEmployee(1);
-        assertEquals(this.testControl.getSelectedEmployee().getName(), testName); 
+        assertEquals(this.testControl.getSelectedEmployee().getFirstName(), testName); 
 
     }
 
@@ -179,7 +179,7 @@ public class ControlTest {
     {
         Control aControl = new Control();        
         aControl.addEmployee(new Department("Finance"), new Business("huxley"), "firstName", "secondName");
-        assertEquals(aControl.getSelectedEmployee().getName(),"firstName");
+        assertEquals(aControl.getSelectedEmployee().getFirstName(),"firstName");
         assertEquals(aControl.removeEmployee(),true);
     }
     

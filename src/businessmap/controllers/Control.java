@@ -23,6 +23,7 @@ import java.util.List;
 
 public class Control {
     private List<Business> businessList; 
+    private List<Department> departmentList;
     private Business selectedBusiness;
     private Department selectedDepartment;
     private Employee selectedEmployee;
@@ -31,6 +32,8 @@ public class Control {
     public Control() 
     {
         this.businessList = new ArrayList<>();
+        this.departmentList = new ArrayList<>();
+
         this.selectedBusiness = new Business();
         this.selectedDepartment = new Department();
         this.selectedEmployee = new Employee();
@@ -112,6 +115,27 @@ public class Control {
      //   return this.businessList;
     }
     
+    
+        private void populateDepartments()
+    {
+        String sql = "SELECT * From Department";
+        try
+        {
+            this.departmentList = new ArrayList<>();
+            dbConnection dbCon = new dbConnection();
+            Statement stmt = dbCon.getConnection().createStatement();
+            ResultSet returnedTable = stmt.executeQuery(sql);
+            while (returnedTable.next())
+            {
+                this.departmentList.add(new Department(returnedTable.getInt("idNum"), returnedTable.getString("name")));
+            }
+           dbCon.getConnection().close();
+        }
+        catch (SQLException exception)   
+        {
+            System.out.println("An error occured: " + exception);  
+        }   
+    }
     /**
      * populates a list of all departments for a given Business from DB
      * @param aBusinessName
@@ -241,10 +265,16 @@ public class Control {
         return this.selectedEmployee;
     }
     
-    public List<Department>getDepartments()
+    public List<Department>getBusDepartments()
     {
         this.selectedBusiness.populateDepartments();
         return this.selectedBusiness.getDepartments();
+    }
+    
+        public List<Department>getAllDepartments()
+    {
+        this.populateDepartments();
+        return this.departmentList;
     }
     
     public List<Employee>getDeptEmployees()
