@@ -5,13 +5,11 @@
         <group>
             <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/models/Business.java</file>
             <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/controllers/Control.java</file>
-            <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/models/EmployeeIF.java</file>
             <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/models/Employee.java</file>
             <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/views/mainFrame.java</file>
             <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/models/Department.java</file>
-            <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/models/dbConnection.java</file>
-            <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/views/BusinessMapGUI.java</file>
-            <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/controllers/ControlIf.java</file>
+            <file>file:/home/erode/NetBeansProjects/businessMap/src/businessmap/models/Analytics.java</file>
+            <file>file:/home/erode/NetBeansProjects/businessMap/test/businessmap/models/AnlayticTest.java</file>
         </group>
     </open-files>
 </project-private>

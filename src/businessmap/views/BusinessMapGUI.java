@@ -32,9 +32,9 @@ public class BusinessMapGUI {
         Scanner reader = new Scanner(System.in);  // Reading from System.in
         System.out.println("Enter a db password: ");
         dbCon.setPassword(reader.toString());
-        String pass = reader.next();
-        reader.nextLine();
-        System.out.println(pass);
+       // String pass = reader.next();
+       // reader.nextLine();
+       // System.out.println(pass);
        
         mainFrame test = new mainFrame();
         test.setVisible(true);

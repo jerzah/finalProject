@@ -21,7 +21,7 @@ private String secondName;
 private int idNum;
 private Business business;
 private Department departnment;
-//private String[] address;
+private String[] address;
 //private String phoneNumber;
 //private InetAddress ipAddress;
 

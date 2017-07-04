@@ -276,5 +276,35 @@ public class Business implements BusinessIF {
         return false;
     }
     
+    private boolean purgeEmp()
+    {
+        String deleteAll = "Delete FROM Employee WHERE business_id ='" + this.getIdNum()+ "'";
+        Statement stmt = null;
+        if(this.getIdNum()!=0)
+        {
+            try
+            {
+                System.out.println("TEST DELETEENTRY QUERY "+deleteAll);
+                dbConnection dbCon = new dbConnection();
+                stmt = dbCon.getConnection().createStatement();
+                stmt.executeUpdate(deleteAll);
+                dbCon.getConnection().close();
+                return true;
+            }
+            catch (SQLException sqlexcept)
+            {
+                System.out.println("connection failed , "  + sqlexcept);
+            }
+        }
+        return false;
+    }
+    
+    public void purgeBusiness()
+    {
+        System.out.println(this.getIdNum());
+        this.purgeEmp();
+        System.out.println(this.getIdNum());
+        this.deleteEntry();
+    }
     
 }
