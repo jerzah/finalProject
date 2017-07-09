@@ -5,6 +5,10 @@
  */
 package businessmap.models;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author erode
@@ -30,12 +34,12 @@ public class Analytics {
         this.aBusiness = aBus;
     }
     
-    public void setDeptCount(int anAmount)
+    private void setDeptCount(int anAmount)
     {
         this.deptCount = anAmount;
     }
     
-    public void setEmpCount(int anAmount)
+    private void setEmpCount(int anAmount)
     {
         this.EmpCount = anAmount;
     }
@@ -55,7 +59,7 @@ public class Analytics {
         return this.EmpCount;
     }
     
-    public int countDept()
+    private int countDept()
     {
         if(this.getBusiness()!=null)
         {
@@ -64,20 +68,26 @@ public class Analytics {
         return this.getDeptAmount();
     }
     
-    public int countEmp()
+    private int countDeptEmps(List<Department> aDept)
     {
-        int i = 0;
-        if(this.getBusiness()!=null)
+        int i=0;
+        for (Department d : aDept)
         {
-            for (Department a : this.getBusiness().getDepartments())
-            {
-                a.setEmployeeList(this.getBusiness());
-                i += a.getEmployees().size();
-            }
-            this.setEmpCount(i);
+             d.setEmployeeList(this.getBusiness());
+             i += d.getEmployees().size();
+             this.setEmpCount(i);
         }
         return this.getEmpAmount();
     }
    
+   public Map<String,Integer> iniCount()
+   {
+     Map<String, Integer> aMap = new HashMap<>();
+     this.countDept();
+     this.countDeptEmps(this.getBusiness().getDepartments());
+     aMap.put("Departments", this.getDeptAmount());
+     aMap.put("Employees", this.EmpCount);
+     return aMap;
    
+   }
 }

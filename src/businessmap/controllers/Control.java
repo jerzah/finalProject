@@ -5,6 +5,7 @@
  */
 package businessmap.controllers;
 
+import businessmap.models.Analytics;
 import businessmap.models.Business;
 import businessmap.models.Employee;
 import businessmap.models.Department;
@@ -287,6 +288,18 @@ public class Control {
     {
         this.populateBusinesses();
         return this.businessList;
+    }
+    
+    public int countDepartments()
+    {
+        Analytics analyt = new Analytics(this.getSelectedBusiness());
+        return analyt.iniCount().get("Departments");
+    }
+    
+    public int countEmployees()
+    {
+        Analytics analyt = new Analytics(this.getSelectedBusiness());
+        return analyt.iniCount().get("Employees");
     }
     
 }

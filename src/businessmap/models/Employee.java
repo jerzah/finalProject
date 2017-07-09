@@ -9,6 +9,8 @@ import java.net.InetAddress;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,6 +23,7 @@ private String secondName;
 private int idNum;
 private Business business;
 private Department departnment;
+private List<String>userNames ; //List of usernames
 private String[] address;
 //private String phoneNumber;
 //private InetAddress ipAddress;
@@ -38,7 +41,7 @@ private String[] address;
         this.idNum = id;
         this.firstName = aFirstName; 
         this.secondName = aSecondName;
-
+        this.userNames = new ArrayList<>();
     }
     
     public Employee(String aFirstName, String aSecondName, Business aBusiness, Department aDepartment)
@@ -60,11 +63,14 @@ private String[] address;
         this.secondName = aSecondName;
         this.business = aBusiness;
         this.departnment = aDepartment;
+        this.userNames = new ArrayList<>();
+
     }
     //Setter Methods
     /**
      *
      * @param aAddress
+     * @return 
      */
     /*
     public void setIpAddress(InetAddress aIpAddr)
@@ -85,16 +91,19 @@ private String[] address;
         return this.getFirstName() + " " +this.getSecondName();
     }
     
+    @Override
     public void setFirstName(String aName)
     {
         this.firstName = aName;
     }
     
+    @Override
     public void setSecondName(String aName)
     {
         this.secondName = aName;
     }
   
+    @Override
     public void setIdNum(int aIdNum)
     {
         this.idNum = aIdNum;
@@ -113,21 +122,34 @@ private String[] address;
         return this.address;
     }
     */
+    @Override
     public String getFirstName()
     {
         return this.firstName;
     }
-    
+        @Override
+
     public String getSecondName()
     {
         return this.secondName;
     }
-    
+    @Override
     public int getIdNum()
     {
         return this.idNum;
     }
     
+    public void addUserName(String aUsrName)
+    {
+        this.userNames.add(aUsrName);
+    }
+
+    public List<String>getUserNames()
+    {
+        return this.userNames;
+    }
+    
+    //***DATABASE OPERATIONS***
 
     /**
      * Will save a new employee objects variables into the table Employee

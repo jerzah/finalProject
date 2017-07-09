@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package businessmap.models;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -50,30 +52,35 @@ public class AnlayticTest {
         Analytics testAn = new Analytics();
         testAn.setBusiness(aBus);
         assertEquals(testAn.getBusiness(), aBus);
-        assertEquals(testAn.countDept(), size);
+     //   assertEquals(testAn.countDept(), size);
     }
     
     @Test
-    public void TestcountEmp()
+    public void TestiniCount()
     {
-        Analytics testAn = new Analytics();
-
         Business aBus = new Business("Huxley");
+        Analytics testAn = new Analytics();
+        assertEquals(testAn.getBusiness(), null);
+        testAn.setBusiness(aBus);
+        assertEquals(testAn.getBusiness(), aBus);
+
         aBus.isSaved();
         aBus.populateDepartments();
-        
-        assertEquals(testAn.countEmp(), 0);
-        
-        int i = 0;
-        for (Department d : aBus.getDepartments())
-        {
-            d.setEmployeeList(aBus);
-            i += d.getEmployees().size();
-        }        
-        testAn.setBusiness(aBus);
-        
         assertEquals(testAn.getBusiness(), aBus);
-        assertEquals(testAn.countEmp(), i);
+        Map<String, Integer> aMap = new HashMap<>();
+        Integer busCount = 1;
+        Integer empCount = 2;
+
+        assertEquals(testAn.iniCount().getClass(), aMap.getClass());
+        assertEquals(testAn.iniCount().containsKey("Departments"),true);
+        assertEquals(testAn.iniCount().containsKey("Employees"),true);
+        
+        assertEquals(testAn.iniCount().get("Departments"), busCount );
+        assertEquals(testAn.iniCount().get("Employees"), empCount );
+
+
+
     }
 
+    
 }

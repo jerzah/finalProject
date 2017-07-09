@@ -61,6 +61,18 @@ public class Department extends Business implements DepartmentIF
         //this.aEmployeeList = new ArrayList<>();
         this.populateEmployees(aBusiness);
     }
+    
+    
+    public void addEmployee(Employee aEmp)
+    {
+        this.aEmployeeList.add(aEmp);
+    }
+    
+    
+    public Employee getEmp(int aNum)
+    {
+        return this.aEmployeeList.get(aNum);
+    }
    
     private void populateEmployees(Business aBusiness)
     {

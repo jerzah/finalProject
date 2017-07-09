@@ -88,6 +88,7 @@ public class DepartmentTest {
         System.out.println("deleteEntry() test");
         this.aDept = new Department("test Department");
         assertEquals(this.aDept.save(),true);
+        assertEquals(this.aDept.isSaved(), true);
         assertEquals(this.aDept.deleteEntry(), true);
 
     }

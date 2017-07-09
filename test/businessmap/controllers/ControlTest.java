@@ -60,8 +60,8 @@ public class ControlTest {
     {
         System.out.println("test -> setSelectedEmployee(): ");
         this.testControl = new Control();
-        String testEmpl = "Rinder";
-        int idNum = 2;
+        String testEmpl = "gaga";
+        int idNum = 3;
         this.testControl.setSelectedEmployee(idNum);
         System.out.println(this.testControl.getSelectedEmployee().getSecondName());
         assertEquals(this.testControl.getSelectedEmployee().getSecondName(), testEmpl);
@@ -111,8 +111,8 @@ public class ControlTest {
         assertNull(this.testControl);
         this.testControl = new Control();
         assertNotNull(this.testControl);
-        String testName = "Adam";
-        this.testControl.setSelectedEmployee(1);
+        String testName = "lady";
+        this.testControl.setSelectedEmployee(3);
         assertEquals(this.testControl.getSelectedEmployee().getFirstName(), testName); 
 
     }
@@ -221,5 +221,13 @@ public class ControlTest {
         Control aControl = new Control();
         assertEquals(aControl.addBusiness("ABusiness"), true);
         assertEquals(aControl.removeBusiness(), true);
+    }
+    
+    
+    @Test 
+    public void countDepartments()
+    {
+        Control aCont = new Control();
+        assertEquals(aCont.countDepartments(),0);
     }
 }

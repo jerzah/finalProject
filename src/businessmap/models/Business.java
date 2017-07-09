@@ -86,6 +86,18 @@ public class Business implements BusinessIF {
         return this.aDepartmentList;
     }
     
+    public void addDepartment(Department aDept)
+    {
+        this.aDepartmentList.add(aDept);
+    }
+    
+    
+    public Department getDept(int aNum)
+    {
+        return this.aDepartmentList.get(aNum);
+    }
+    
+    
     public void setDepartments()
     {
         this.populateDepartments();
