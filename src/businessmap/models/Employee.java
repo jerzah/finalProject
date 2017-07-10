@@ -164,7 +164,7 @@ private String[] address;
             Statement stmt = null;
             String sqlQuery = "INSERT INTO '" +this.getClass().getSimpleName()  + 
                               "' (first_name, second_name, business_id, department_id)" +
-                              "VALUES ('"+ this.getFirstName() +"', '"+ this.getSecondName()+"', '"
+                                  "VALUES ('"+ this.getFirstName() +"', '"+ this.getSecondName()+"', '"
                               +this.business.getIdNum()+"', '"
                               +this.departnment.getIdNum()+"' )";
             try

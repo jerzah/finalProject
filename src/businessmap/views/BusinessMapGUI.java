@@ -35,6 +35,12 @@ public class BusinessMapGUI {
        // String pass = reader.next();
        // reader.nextLine();
        // System.out.println(pass);
+        //dbCon.dropEmployeeTable();
+        //dbCon.dropDepartmentTable();
+        //dbCon.dropBusinessTable();
+        dbCon.createNewTables();
+        Control aControl = new Control();
+        aControl.addBusiness("Huxley");
        
         mainFrame test = new mainFrame();
         test.setVisible(true);
@@ -42,12 +48,10 @@ public class BusinessMapGUI {
 
         // TODO code application logic here
   
-       /*
-        Create Tables
-        */
-        //dbCon.createNewTables();
-        Control aControl = new Control();
-        //aControl.addBusiness("Husxley");
+       
+        //Create Tables
+        
+
         
         System.out.println("========  Business Table  ========");
         dbCon.checkTable("Business");
@@ -55,13 +59,13 @@ public class BusinessMapGUI {
         dbCon.checkTable("Employee");
         System.out.println("========  Department Table ========");
         dbCon.checkTable("Department");
+        System.out.println("========  Social Media Account Table ========");
+        dbCon.checkTable("Social_Media_User");
+        System.out.println("========  Social Media Table ========");
+        dbCon.checkTable("Social_Media");
+
         
-        /*
-        Delete tables
-        */
-        //dbCon.dropEmployeeTable();
-        //dbCon.dropDepartmentTable();
-        //dbCon.dropBusinessTable();
+
 
     }
 

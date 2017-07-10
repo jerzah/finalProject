@@ -25,10 +25,10 @@ public class SocialMediaAccountTest {
     @Test
     public void testGetAccount() throws MalformedURLException {
         URL aSMUrl = new URL("http://www.webpage.com/");
-        URL aUrl = new URL("http://www.webpage.com/username");
+        //URL aUrl = new URL("http://www.webpage.com/username");
 
         SocialMedia anAcc = new SocialMedia("FAcetest", aSMUrl);
-        SocialMediaAccount sm = new SocialMediaAccount("username", aUrl, anAcc);
+        SocialMediaAccount sm = new SocialMediaAccount("username", anAcc);
         
         assertEquals(sm.getAccount(), anAcc);    
     }
@@ -37,35 +37,63 @@ public class SocialMediaAccountTest {
      * Test of setAccount method, of class SocialMediaAccount.
      */
     @Test
-    public void testSetAccount() {
+    public void testSetAccount() throws MalformedURLException{
+       URL aSMUrl = new URL("http://www.webpage.com/");
+        SocialMedia smAcc = new SocialMedia("FAcetest", aSMUrl);
+        SocialMediaAccount anAcc = new SocialMediaAccount();
+        anAcc.setAccount(smAcc);
+        assertEquals(anAcc.getAccount(),smAcc);
     }
 
     /**
      * Test of getUserName method, of class SocialMediaAccount.
      */
     @Test
-    public void testGetUserName() {
+    public void testGetUserName() throws MalformedURLException {
+        URL aSMUrl = new URL("http://www.webpage.com/");
+     //   URL aUrl = new URL("http://www.webpage.com/username");
+
+        SocialMedia anAcc = new SocialMedia("FAcetest", aSMUrl);
+        SocialMediaAccount sm = new SocialMediaAccount("username", anAcc);
+        assertEquals(sm.getUserName(), "username");    
     }
 
     /**
      * Test of setUserName method, of class SocialMediaAccount.
      */
     @Test
-    public void testSetUserName() {
+    public void testSetUserName() throws MalformedURLException {
+        URL aSMUrl = new URL("http://www.webpage.com/");
+        SocialMedia anAcc = new SocialMedia("FAcetest", aSMUrl);
+        SocialMediaAccount sm = new SocialMediaAccount("username", anAcc);
+        assertEquals(sm.getUserName(), "username");
+     
     }
 
     /**
      * Test of getEmpId method, of class SocialMediaAccount.
      */
     @Test
-    public void testGetEmpId() {
+    public void testGetEmpId() throws MalformedURLException {
+        URL aSMUrl = new URL("http://www.webpage.com/");
+        SocialMedia anAcc = new SocialMedia("FAcetest", aSMUrl);
+        SocialMediaAccount sm = new SocialMediaAccount("username", anAcc, 1);
+        
+        assertEquals(sm.getEmpId(), 1);
+        
     }
 
     /**
      * Test of setEmpId method, of class SocialMediaAccount.
      */
     @Test
-    public void testSetEmpId() {
+    public void testSetEmpId() throws MalformedURLException {
+        URL aSMUrl = new URL("http://www.webpage.com/");
+        SocialMedia anAcc = new SocialMedia("FAcetest", aSMUrl);
+        SocialMediaAccount sm = new SocialMediaAccount("username", anAcc);
+        sm.setEmpId(1);
+        assertEquals(sm.getEmpId(), 1);
+        
     }
     
 }

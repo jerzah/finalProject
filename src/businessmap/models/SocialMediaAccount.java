@@ -13,35 +13,29 @@ import java.net.URL;
  */
 public class SocialMediaAccount extends SocialMedia implements SocialMediaAccountIF {
     
-    private SocialMedia account;
-    private int empId;
+    private SocialMedia account; // Social media site 
+    private int empId; // employee unique id from database
 
     public SocialMediaAccount()
     {
         
     }
-    
-    public SocialMediaAccount(String userName, URL aURL) {
-        super(userName, aURL);
-    }
-    
-    public SocialMediaAccount(String userName, URL aURL, int id) {
-        super(userName, aURL, id);
-    }
-        
-        public SocialMediaAccount(String userName, URL aURL,  SocialMedia sMediaAcc) {
-        super(userName, aURL);
+         
+    public SocialMediaAccount(String userName, SocialMedia sMediaAcc) {
+        super(userName, sMediaAcc.getAddress());
         this.account = sMediaAcc;
     }
         
-    public SocialMediaAccount(String userName, URL aURL, int id, SocialMedia sMediaAcc) {
-        super(userName, aURL, id);
+    public SocialMediaAccount(String userName, SocialMedia sMediaAcc, int employeeId) {
+        super(userName, sMediaAcc.getAddress());
         this.account = sMediaAcc;
+        this.empId = employeeId;
+
     }
     
     @Override
     public SocialMedia getAccount() {
-        return account;
+        return this.account;
     }
 
     @Override
@@ -61,7 +55,7 @@ public class SocialMediaAccount extends SocialMedia implements SocialMediaAccoun
 
     @Override
     public int getEmpId() {
-        return empId;
+        return this.empId;
     }
 
     @Override

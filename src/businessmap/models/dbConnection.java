@@ -47,6 +47,7 @@ public class dbConnection {
         String createDepartmentTable = "CREATE TABLE IF NOT EXISTS Department" + 
                 "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
                 "name VARCHAR(32) NOT NULL UNIQUE)";
+   
         
         String createEmployeeTable = "CREATE TABLE IF NOT EXISTS Employee" + 
                 "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
@@ -56,12 +57,31 @@ public class dbConnection {
                 "department_id INTEGER NOT NULL, \n" +
                 "FOREIGN KEY(business_id) REFERENCES Business(idNum), \n" +
                 "FOREIGN KEY(department_id) REFERENCES Department(idNum))";
+        
+        
+        String createUserSocialMediaAccountTable = "CREATE TABLE IF NOT EXISTS Social_Media_User" + 
+                "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+                "link VARCHAR(32) NOT NULL UNIQUE, \n" +
+                "user_name VARCHAR(32) NOT NULL, \n" +
+                "employee_id INTEGER NOT NULL, \n" + 
+                "social_Media_id INTEGER NOT NULL, \n" +
+                "FOREIGN KEY(employee_id) REFERENCES Employee(idNum), \n" +
+                "FOREIGN KEY(social_Media_id) REFERENCES Social_Media(idNum))";
+                
+        String createSocialMediaTable = "CREATE TABLE IF NOT EXISTS Social_Media" + 
+                "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+                "name VARCHAR(32) NOT NULL UNIQUE, \n" +
+                "link VARCHAR(64) NOT NULL UNIQUE)";
+
         try{
             Statement stmt = null;
             stmt = this.con.createStatement();
             stmt.executeUpdate(createBusinessTable);
             stmt.executeUpdate(createDepartmentTable);
             stmt.executeUpdate(createEmployeeTable);
+            stmt.executeUpdate(createUserSocialMediaAccountTable);
+            stmt.executeUpdate(createSocialMediaTable);
+
         } catch (SQLException exception)
         {
             System.out.println("An error occured: " + exception);
@@ -127,7 +147,17 @@ public class dbConnection {
             {
                 Statement stmt = this.con.createStatement();
                 ResultSet returnedTable = stmt.executeQuery(sql);
-                if (!tableName.equals("Employee"))
+                if (tableName.equals("Social_Media"))
+               {
+                    while (returnedTable.next())
+                    {
+                        System.out.print(
+                        returnedTable.getInt("idNum") + "\t " + 
+                        returnedTable.getString("name") + "\t " +
+                        returnedTable.getString("link") + "\n");
+                    }
+                }
+                else if (!tableName.equals("Employee"))
                 {
                 while (returnedTable.next())
                 {
@@ -140,17 +170,18 @@ public class dbConnection {
                         //returnedTable.getInt("department_id") + "\n" );
                 }
             }
+                
             else
             {
                 while (returnedTable.next())
                 {
-                System.out.print(
-                        returnedTable.getInt("idNum") + "\t " + 
-                        //returnedTable.getString("name") + "\n");// + "\n" +
-                        returnedTable.getString("first_name") + "\t " +
-                        returnedTable.getString("second_name") + "\t " +
-                        returnedTable.getInt("business_id") + "\t " +
-                        returnedTable.getInt("department_id") + "\n" );
+                    System.out.print(
+                    returnedTable.getInt("idNum") + "\t " + 
+                    //returnedTable.getString("name") + "\n");// + "\n" +
+                    returnedTable.getString("first_name") + "\t " +
+                    returnedTable.getString("second_name") + "\t " +
+                    returnedTable.getInt("business_id") + "\t " +
+                    returnedTable.getInt("department_id") + "\n" );
                 }
             }
         }
