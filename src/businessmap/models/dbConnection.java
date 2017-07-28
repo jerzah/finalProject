@@ -63,6 +63,7 @@ public class dbConnection {
                 "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
                 "link VARCHAR(32) NOT NULL UNIQUE, \n" +
                 "user_name VARCHAR(32) NOT NULL, \n" +
+                "password VARCHAR(32) NOT NULL, \n" +
                 "employee_id INTEGER NOT NULL, \n" + 
                 "social_Media_id INTEGER NOT NULL, \n" +
                 "FOREIGN KEY(employee_id) REFERENCES Employee(idNum), \n" +
@@ -135,6 +136,32 @@ public class dbConnection {
         }
     }
     
+    public void dropSocialMediaTable()
+    {
+        String DropEmployeeTable = "DROP TABLE Social_Media";
+        try{
+            Statement stmt = null;
+            stmt = this.con.createStatement();
+            stmt.executeUpdate(DropEmployeeTable);
+        } catch (SQLException exception)
+        {
+            System.out.println("An error occured: " + exception);
+        }
+    }
+    
+    public void dropdropSocialMediaAccountTable()
+    {
+        String DropEmployeeTable = "DROP TABLE Social_Media_User";
+        try{
+            Statement stmt = null;
+            stmt = this.con.createStatement();
+            stmt.executeUpdate(DropEmployeeTable);
+        } catch (SQLException exception)
+        {
+            System.out.println("An error occured: " + exception);
+        }
+    }
+    
     /**
      * 
      * @param tableName
@@ -148,12 +175,25 @@ public class dbConnection {
                 Statement stmt = this.con.createStatement();
                 ResultSet returnedTable = stmt.executeQuery(sql);
                 if (tableName.equals("Social_Media"))
-               {
+                {
                     while (returnedTable.next())
                     {
                         System.out.print(
                         returnedTable.getInt("idNum") + "\t " + 
                         returnedTable.getString("name") + "\t " +
+                        returnedTable.getString("link") + "\n");
+                    }
+                }
+                else if (tableName.equals("Social_Media_User"))
+                {
+                    while (returnedTable.next())
+                    {
+                        System.out.print(
+                        returnedTable.getInt("idNum") + "\t " + 
+                        returnedTable.getString("user_name") + "\t " +
+                        returnedTable.getString("password") + "\t " +
+                        returnedTable.getString("employee_id") + "\t " +
+                        returnedTable.getString("social_Media_id") + "\t " +
                         returnedTable.getString("link") + "\n");
                     }
                 }

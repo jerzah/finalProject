@@ -9,7 +9,11 @@ import businessmap.models.Analytics;
 import businessmap.models.Business;
 import businessmap.models.Employee;
 import businessmap.models.Department;
+import businessmap.models.SocialMedia;
+import businessmap.models.SocialMediaAccount;
 import businessmap.models.dbConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,9 +29,18 @@ import java.util.List;
 public class Control {
     private List<Business> businessList; 
     private List<Department> departmentList;
+    List<SocialMediaAccount>  socialMediaAccountList;
+    List<SocialMedia>  socialMediaList;
+
     private Business selectedBusiness;
     private Department selectedDepartment;
     private Employee selectedEmployee;
+    private SocialMedia socialMedia;
+    private SocialMediaAccount socialMediaAccount;
+    private Analytics analyt; 
+
+
+
 
 
     public Control() 
@@ -38,12 +51,21 @@ public class Control {
         this.selectedBusiness = new Business();
         this.selectedDepartment = new Department();
         this.selectedEmployee = new Employee();
+        
+        this.socialMediaAccountList = new ArrayList<>();
+        this.socialMediaList = new ArrayList<>();  
+        
+        this.analyt = new Analytics();
+        
+
     }
+    
+    // **Business Setter and Getters ** 
     /**
      * sets the instance variable selectedBusiness
      * @param aBusiness 
      */
-    public void setSelectedBusiness(String aBusiness)
+    public void setBusiness(String aBusiness)
     {
         
         //this.businessList = new ArrayList<>();
@@ -54,11 +76,19 @@ public class Control {
         }
       //  this.selectedBusiness.setEmployees();
     }
+    
+     public Business getBusiness()
+    {
+        return this.selectedBusiness;
+    }
+     
+     // ** Department Setter and Getters **
+     
     /**
      * Sets a department as the instance variable selectedDepartment
      * @param aDepartment 
      */
-    public void setSelectedDepartment(String aDepartment)
+    public void setDepartment(String aDepartment)
     {
         this.selectedDepartment.setName(aDepartment);
         if (this.selectedDepartment.isSaved())
@@ -66,12 +96,19 @@ public class Control {
             this.selectedDepartment = new Department(this.selectedDepartment.getIdNum(), this.selectedDepartment.getName());
         }
     }
-        
+    
+    public Department getDepartment()
+    {
+        return this.selectedDepartment;
+    }
+    
+    // ** Employee Setters and Getters **
+    
     /**
      * sets an employee as the instance variable selectedEmployee
      * @param idNum 
      */
-    public void setSelectedEmployee(int idNum)
+    public void setEmployee(int idNum)
     {
         try
         {
@@ -83,17 +120,98 @@ public class Control {
         }
     }
     
-        public void setSelectedEmployee(Employee anEmployee)
-        {
-            this.selectedEmployee = anEmployee;
-        }
+    public void setEmployee(Employee anEmployee)
+    {
+        this.selectedEmployee = anEmployee;
+    }
+        
+    public Employee getEmployee()
+    {
+        return this.selectedEmployee;
+    }
+    
+    public Employee getEmployee(int idNum)
+    {
+        Employee aEmployee = new Employee();
+        return aEmployee.getEmployee(idNum);
+    }
+
+    public Analytics getAnalyt() {
+        return analyt;
+    }
+
+    public void setAnalyt(Analytics analyt) {
+        this.analyt = analyt;
+    }
+    
+    
+    // ** Social media getter and setters **
+
+    public void setSocialMedia(SocialMedia socialMedia) throws MalformedURLException {
+        this.socialMedia = socialMedia;
+        this.socialMedia.isSaved();
+    }
 
     
+    public SocialMedia getSocialMedia() {
+        return this.socialMedia;
+    }
+    
+    
+    public void setSocialMedia() throws MalformedURLException
+    {
+        this.populateSocialMedia();
+    }
+    
+        public void setSocialMediaAccount(URL aURL) throws MalformedURLException
+    {
+        this.socialMediaAccount = new SocialMediaAccount(aURL);
+        this.socialMediaAccount.isSaved();
+    }
+    
+    public void setSocialMediaAccount(SocialMediaAccount sma) throws MalformedURLException
+    {        
+        sma.isSaved();
+        this.socialMediaAccount = sma;
+        
+    }
+    
+    public List<SocialMedia> getSocialMediaList() throws MalformedURLException //throws MalformedURLException
+    {
+        return this.socialMediaList;
+    }
+
+    public List<SocialMediaAccount> getSocialMediaAccountList() {
+        return this.getEmployee().getSmAccountList();
+    }
+    
+    public SocialMediaAccount getSocialMediaAccount()
+    {
+        return this.socialMediaAccount;
+    }
+
+    public void isSavedSocialMediaAccount(String aURL) throws MalformedURLException
+    {
+        System.out.println("Control test :" + aURL);
+        this.getSocialMediaAccount().setLink(aURL);
+        this.getSocialMediaAccount().isSaved();
+    }
+    
+
+
+    public void setSocialAccountMediaList() throws MalformedURLException {
+       // this.setEmployee(anEmp);
+       this.getEmployee().populateSocialMediaAccounts();
+    }
+    
+    
+
+    // ** DB access and population methods
     
     /**
      * Populates a list of all businesses from the business table
      */
-    public void populateBusinesses()
+    private void populateBusinessList()
     {
         String sql = "SELECT * From Business";
         try
@@ -113,11 +231,10 @@ public class Control {
         {
             System.out.println("An error occured: " + exception);  
         }   
-     //   return this.businessList;
     }
     
     
-        private void populateDepartments()
+    private void populateDepartmentList()
     {
         String sql = "SELECT * From Department";
         try
@@ -137,6 +254,32 @@ public class Control {
             System.out.println("An error occured: " + exception);  
         }   
     }
+    
+
+   
+    private void populateSocialMedia() throws MalformedURLException
+    {
+        this.socialMediaList = new ArrayList();
+        String sql = "SELECT * From Social_Media";
+        try
+        {
+            dbConnection dbCon = new dbConnection();
+            Statement stmt = dbCon.getConnection().createStatement();
+            ResultSet returnedTable = stmt.executeQuery(sql);
+            while (returnedTable.next())
+            {
+                this.socialMediaList.add(new SocialMedia(returnedTable.getInt("idNum"), returnedTable.getString("name"), new URL(returnedTable.getString("link"))));
+                System.out.println("URL TEST: " + returnedTable.getString("name"));
+            }
+           dbCon.getConnection().close();
+        }
+        catch (SQLException exception)   
+        {
+            System.out.println("An error occured: " + exception);  
+        }   
+            
+    }
+
     /**
      * populates a list of all departments for a given Business from DB
      * @param aBusinessName
@@ -171,11 +314,7 @@ public class Control {
         return aDepartmentName.getEmployees();   
     }**/
     
-    public Employee getEmployee(int idNum)
-    {
-        Employee aEmployee = new Employee();
-        return aEmployee.getEmployee(idNum);
-    }
+
     
     /**
      * Prints a list of all saved businesses
@@ -188,9 +327,9 @@ public class Control {
         }
     }
     
-    //USE CASE IMPLEMENTATION - REMEMEBR TO DECOMPOSE INTERFACE AND USE CASE IMP
+    // ** USE CASE IMPLEMENTATION - REMEMEBR TO DECOMPOSE INTERFACE AND USE CASE IMP **
     
-        /**
+    /**
      * 
      * @param aDepartment
      * @param aBusiness
@@ -224,14 +363,33 @@ public class Control {
      * @return boolean 
      */
     
-        public boolean addDepartment(String newdept)
+    public boolean addDepartment(String newdept)
     {
         Department department = new Department(newdept);
         this.selectedDepartment = department;
         this.selectedDepartment.save();
         return this.selectedDepartment.isSaved();
     }
+    
+    public boolean addSocialMediaAccount(String username, URL aURL, String password)
+    {
+        boolean result = false;
+        try
+        {
+            this.setSocialMediaAccount(new SocialMediaAccount(this.getEmployee().getIdNum(), password, username, this.getSocialMedia(), aURL));
+            this.getSocialMediaAccount().save();
+            this.getSocialMediaAccount().isSaved();
+            result =  true;
+        }
+        catch (Exception anExcept)
+        {
+            System.out.println(anExcept);
+        }
+        return result;
+    }
 
+    
+    // ** REMOVE ENTRY USE CASES 
     /**
      * use case - remove a business
      * @return boolean
@@ -251,56 +409,94 @@ public class Control {
         return this.selectedDepartment.deleteEntry();
     }
     
-        public Business getSelectedBusiness()
+    public void initAnalytic() throws MalformedURLException
     {
-        return this.selectedBusiness;
+        this.analyt.setBusiness(this.selectedBusiness);
+        this.analyt.iniCount();
+    }
+     
+    
+    public List<Department>getDepartments(Business aBusiness)
+    {
+        aBusiness.populateDepartments();
+        return aBusiness.getDepartments();
     }
     
-    public Department getSelectedDepartment()
-    {
-        return this.selectedDepartment;
-    }
     
-    public Employee getSelectedEmployee()
+    public List<Department>getDepartments()
     {
-        return this.selectedEmployee;
-    }
-    
-    public List<Department>getBusDepartments()
-    {
-        this.selectedBusiness.populateDepartments();
-        return this.selectedBusiness.getDepartments();
-    }
-    
-        public List<Department>getAllDepartments()
-    {
-        this.populateDepartments();
+        this.populateDepartmentList();
         return this.departmentList;
     }
-    
-    public List<Employee>getDeptEmployees()
+   
+    public List<Employee>getEmployees(Department aDept)
     {
-        this.selectedDepartment.setEmployeeList(this.selectedBusiness);
-        return this.getSelectedDepartment().getEmployees();
+        aDept.setEmployeeList(this.selectedBusiness);
+        return aDept.getEmployees();
     }
     
     public List<Business>getBusinesses()
     {
-        this.populateBusinesses();
+        this.populateBusinessList();
         return this.businessList;
     }
-    
-    public int countDepartments()
+   
+    public int countDepartments() throws MalformedURLException
     {
-        Analytics analyt = new Analytics(this.getSelectedBusiness());
-        return analyt.iniCount().get("Departments");
+        return this.analyt.getaMap().get("departments");
     }
     
-    public int countEmployees()
+    public int countEmployees() throws MalformedURLException
     {
-        Analytics analyt = new Analytics(this.getSelectedBusiness());
-        return analyt.iniCount().get("Employees");
+        return this.analyt.getaMap().get("employees");
     }
     
+    public int countSocialMediaAccounts() throws MalformedURLException
+    {
+        return this.analyt.getaMap().get("socialMediaAccounts");
+    }
+    
+    public int countSocialMediaPass() throws MalformedURLException
+    {
+        return this.analyt.getaMap().get("passwords");
+    }
+    
+        public int countSocialMediaUsername() throws MalformedURLException
+    {
+        return this.analyt.getaMap().get("usernames");
+    }
+    public boolean addSocialMedia(SocialMedia aMedia) throws MalformedURLException
+    {
+        boolean result = aMedia.save();
+        this.setSocialMedia(aMedia);
+        if (result)
+        {
+            this.socialMediaList.add(this.getSocialMedia());
+            this.setSocialMedia();
+        }
+        return result;
+    }
+    
+        public boolean setSocialMedia(String sMedia) throws MalformedURLException
+    {
+        SocialMedia sm = new SocialMedia(sMedia);
+        boolean result = sm.isSaved();
+        this.setSocialMedia(sm);
+        if (result)
+        {
+            this.setSocialMedia();
+        }
+        return result;
+    }
+        
+    public boolean warningMessage(String aValue)
+    {
+        boolean result = false;
+        if(aValue=="y" || aValue== "Yes" || aValue== "Y")
+        {
+            result = true;
+        }
+    return result;
+    }
 }
     

@@ -6,6 +6,8 @@
 package businessmap.models;
 
 import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,6 +27,7 @@ private Business business;
 private Department departnment;
 private List<String>userNames ; //List of usernames
 private String[] address;
+private List<SocialMediaAccount> smAccountList;
 //private String phoneNumber;
 //private InetAddress ipAddress;
 
@@ -52,6 +55,7 @@ private String[] address;
         this.secondName = aSecondName;
         this.business = aBusiness;
         this.departnment = aDepartment;
+        this.smAccountList = new ArrayList<>();
     }
     
         public Employee(int id, String aFirstName, String aSecondName, Business aBusiness, Department aDepartment)
@@ -64,7 +68,7 @@ private String[] address;
         this.business = aBusiness;
         this.departnment = aDepartment;
         this.userNames = new ArrayList<>();
-
+        this.smAccountList = new ArrayList<>();
     }
     //Setter Methods
     /**
@@ -108,6 +112,15 @@ private String[] address;
     {
         this.idNum = aIdNum;
     }
+
+    public List<SocialMediaAccount> getSmAccountList() {
+        return smAccountList;
+    }
+
+    public void setSmAccountList(List<SocialMediaAccount> smAccountList) {
+        this.smAccountList = smAccountList;
+    }
+    
     
     
     //Getter methods
@@ -210,14 +223,14 @@ private String[] address;
             Employee anEmployee = new Employee();
             try
             {
-                //anEmployee = new Employee();
+                anEmployee = new Employee();
                 dbConnection dbCon = new dbConnection();
                 stmt = dbCon.getConnection().createStatement();
                 stmt.executeUpdate(sql);
                 ResultSet returnedTable = stmt.executeQuery(sql);
                 while (returnedTable.next())
                     {
-                         anEmployee.setFirstName(returnedTable.getString("first_name"));
+                        anEmployee.setFirstName(returnedTable.getString("first_name"));
                         //anEmployee.setFirstName(returnedTable.getString("first_name"));
                         anEmployee.setSecondName(returnedTable.getString("second_name"));
                         anEmployee.setIdNum(returnedTable.getInt("idNum"));
@@ -233,7 +246,7 @@ private String[] address;
     }
       
     
-        public boolean deleteEntry()
+    public boolean deleteEntry()
     {
         String deleteQuery = "DELETE FROM '" + this.getClass().getSimpleName()  + "' WHERE idNum = '" + this.getIdNum()+ "'";
         Statement stmt = null;
@@ -260,4 +273,27 @@ private String[] address;
         }
         return false;
     }
+    
+        public void populateSocialMediaAccounts() throws MalformedURLException
+    {
+        this.smAccountList = new ArrayList();
+        String sql = "SELECT * From Social_Media_User WHERE Employee_id = '" + this.getIdNum()+ "'";
+        try
+        {
+            dbConnection dbCon = new dbConnection();
+            Statement stmt = dbCon.getConnection().createStatement();
+            ResultSet returnedTable = stmt.executeQuery(sql);
+            while (returnedTable.next())
+            {
+                this.smAccountList.add(new SocialMediaAccount(returnedTable.getInt("idNum"), returnedTable.getString("user_name"),returnedTable.getString("password"), new SocialMedia(returnedTable.getInt("social_Media_id")), new URL(returnedTable.getString("link"))));
+            }
+           dbCon.getConnection().close();
+        }
+        catch (SQLException exception)   
+        {
+            System.out.println("An error occured: " + exception);  
+        }   
+    }
+    
+
 }

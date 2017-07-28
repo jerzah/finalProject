@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="erode-Laptop" name="businessmap.models.DepartmentTest" skipped="0" tests="7" time="0.145" timestamp="2017-07-10T17:51:48">
+<testsuite errors="0" failures="0" hostname="erode-Laptop" name="businessmap.models.DepartmentTest" skipped="0" tests="7" time="0.147" timestamp="2017-07-27T14:01:18">
   <properties>
     <property name="netbeans.autoupdate.country" value="US" />
     <property name="nb.wait.for.caches" value="true" />
@@ -55,7 +55,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner businessmap.models.DepartmentTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/erode/NetBeansProjects/businessMap/build/test/results/TEST-businessmap.models.DepartmentTest.xml crashfile=/home/erode/NetBeansProjects/businessMap/build/junitvmwatcher7192921864033499942.properties propsfile=/home/erode/NetBeansProjects/businessMap/build/junit6699692420782752905.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner businessmap.models.DepartmentTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/erode/NetBeansProjects/businessMap/build/test/results/TEST-businessmap.models.DepartmentTest.xml crashfile=/home/erode/NetBeansProjects/businessMap/build/junitvmwatcher143676348435704900.properties propsfile=/home/erode/NetBeansProjects/businessMap/build/junit7462476983860727026.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="jnlp.descriptor" value="application" />
@@ -66,7 +66,7 @@
     <property name="libs.javaee-endorsed-api-7.0.javadoc" value="/home/erode/netbeans-8.2/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.jaxws21.javadoc" value="/home/erode/netbeans-8.2/java/docs/jaxws-api-doc.zip" />
     <property name="socksProxyPort" value="0" />
-    <property name="includes" value="**" />
+    <property name="includes" value="businessmap/models/**/*Test.java" />
     <property name="user.country" value="US" />
     <property name="manifest.file" value="manifest.mf" />
     <property name="addExports:java.desktop/sun.awt" value="ALL-UNNAMED" />
@@ -103,6 +103,7 @@
     <property name="libs.javaee-endorsed-api-7.0.src" value="" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="libs.jaxb.javadoc" value="/home/erode/netbeans-8.2/ide/docs/jaxb-api-doc.zip" />
+    <property name="org.openide.awt.SwingBrowserImpl.do-not-block-awt" value="false" />
     <property name="ant.home" value="/home/erode/netbeans-8.2/extide/ant" />
     <property name="libs.junit_4.src" value="/home/erode/netbeans-8.2/platform/docs/junit-4.12-sources.jar" />
     <property name="libs.testng.classpath" value="/home/erode/netbeans-8.2/platform/modules/ext/testng-6.8.1-dist.jar" />
@@ -200,7 +201,6 @@
     <property name="org.openide.major.version" value="IDE/1" />
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM" />
     <property name="netbeans.user" value="/home/erode/.netbeans/8.2" />
-    <property name="tests.failed" value="true" />
     <property name="javadoc.additionalparam" value="" />
     <property name="jnlp.offline-allowed" value="false" />
     <property name="java.io.tmpdir" value="/tmp" />
@@ -221,7 +221,6 @@
     <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="libs.DataBindingME-SVG.src" value="/home/erode/netbeans-8.2/mobility/sources/netbeans_databindingme_svg-src.zip" />
     <property name="dist.jar" value="dist/businessMap.jar" />
-    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
     <property name="ant.project.name" value="businessMap" />
     <property name="netbeans.hash.code" value="unique=NB_EXTIDE_GFMOD_JAVA_WEBCOMMON_WEBEE0ec30b7a5-8ded-4b0f-b54d-f06eafb8f137_2f2caadb-947b-43ed-97df-875f335d7f30" />
@@ -288,8 +287,8 @@
     <property name="annotation.processing.enabled" value="true" />
     <property name="libs.jsf20.src" value="" />
     <property name="libs.jpa20-persistence.src" value="" />
-    <property name="libs.DataBindingME-SVG.maven-pom" value="" />
     <property name="libs.jsf12.src" value="" />
+    <property name="libs.DataBindingME-SVG.maven-pom" value="" />
     <property name="ignore.failing.tests" value="true" />
     <property name="libs.javaee-web-api-7.0.src" value="" />
     <property name="dist.dir" value="dist" />
@@ -304,7 +303,7 @@
     <property name="libs.MySQLDriver.src" value="" />
     <property name="build.test.results.dir" value="build/test/results" />
     <property name="java.runtime.version" value="1.8.0_131-8u131-b11-0ubuntu1.16.04.2-b11" />
-    <property name="jna.platform.library.path" value="/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:/lib64:/usr/lib:/lib:/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu/i686/sse2:/lib32:/usr/lib/i386-linux-gnu/sse2:/usr/lib32:/usr/lib/x86_64-linux-gnu/libfakeroot:/usr/lib/x86_64-linux-gnu/mesa-egl:/usr/lib/x86_64-linux-gnu/mesa:/usr/lib/i386-linux-gnu/mesa" />
+    <property name="jna.platform.library.path" value="/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:/usr/lib64:/lib64:/usr/lib:/lib:/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu/i686/sse2:/lib32:/usr/lib32:/usr/lib/i386-linux-gnu/sse2:/usr/lib/x86_64-linux-gnu/libfakeroot:/usr/lib/x86_64-linux-gnu/mesa-egl:/usr/lib/x86_64-linux-gnu/mesa:/usr/lib/i386-linux-gnu/mesa" />
     <property name="default.javac.target" value="1.8" />
     <property name="libs.junit_4.classpath" value="/home/erode/netbeans-8.2/platform/modules/ext/junit-4.12.jar" />
     <property name="user.timezone" value="" />
@@ -352,8 +351,8 @@
     <property name="libs.PostgreSQLDriver.classpath" value="/home/erode/netbeans-8.2/ide/modules/ext/postgresql-9.4.1209.jar" />
     <property name="libs.jsf12.maven-pom" value="" />
     <property name="jnlp.signing" value="" />
-    <property name="jnlp.signed" value="false" />
     <property name="annotation.processing.source.output" value="build/generated-sources/ap-source-output" />
+    <property name="jnlp.signed" value="false" />
     <property name="main.class" value="businessmap.views.BusinessMapGUI" />
     <property name="libs.CopyLibs.src" value="" />
     <property name="build.dir" value="build" />
@@ -367,29 +366,29 @@
     <property name="libs.javaee-web-api-7.0.javadoc" value="/home/erode/netbeans-8.2/enterprise/docs/javaee-doc-api.jar" />
   </properties>
   <testcase classname="businessmap.models.DepartmentTest" name="testGetDepartments" time="0.001" />
-  <testcase classname="businessmap.models.DepartmentTest" name="testSave" time="0.087" />
+  <testcase classname="businessmap.models.DepartmentTest" name="testSave" time="0.078" />
   <testcase classname="businessmap.models.DepartmentTest" name="testGetName" time="0.0" />
-  <testcase classname="businessmap.models.DepartmentTest" name="testdeleteEntry" time="0.009" />
+  <testcase classname="businessmap.models.DepartmentTest" name="testdeleteEntry" time="0.01" />
   <testcase classname="businessmap.models.DepartmentTest" name="testSetName" time="0.0" />
-  <testcase classname="businessmap.models.DepartmentTest" name="testIsSaved" time="0.01" />
+  <testcase classname="businessmap.models.DepartmentTest" name="testIsSaved" time="0.021" />
   <testcase classname="businessmap.models.DepartmentTest" name="testSetIdNum" time="0.0" />
   <system-out><![CDATA[save() test
 name saved
-TEST DELETEENTRY QUERY DELETE FROM 'Department' WHERE idNum = '4'
+TEST DELETEENTRY QUERY DELETE FROM 'Department' WHERE idNum = '6'
 test department is deleted
 getName() test
 deleteEntry() test
 name saved
 test Department
-Is saved under the name: test Department with the id: 5
-TEST DELETEENTRY QUERY DELETE FROM 'Department' WHERE idNum = '5'
+Is saved under the name: test Department with the id: 7
+TEST DELETEENTRY QUERY DELETE FROM 'Department' WHERE idNum = '7'
 test Department is deleted
 setName() test
 isSaved() test
 name saved
 deleted department
-Is saved under the name: deleted department with the id: 6
-TEST DELETEENTRY QUERY DELETE FROM 'Department' WHERE idNum = '6'
+Is saved under the name: deleted department with the id: 8
+TEST DELETEENTRY QUERY DELETE FROM 'Department' WHERE idNum = '8'
 deleted department is deleted
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

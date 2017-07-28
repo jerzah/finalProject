@@ -8,6 +8,10 @@ package businessmap.controllers;
 import businessmap.models.Business;
 import businessmap.models.Department;
 import businessmap.models.Employee;
+import businessmap.models.SocialMedia;
+import businessmap.models.SocialMediaAccount;
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,8 +36,8 @@ public class ControlTest {
         this.testControl = new Control();
         assertNotNull(this.testControl);
         String testBus = "test ";
-        testControl.setSelectedBusiness(testBus);
-        assertEquals(testControl.getSelectedBusiness().getName(), testBus);
+        testControl.setBusiness(testBus);
+        assertEquals(testControl.getBusiness().getName(), testBus);
     }
 
     /**
@@ -46,25 +50,25 @@ public class ControlTest {
         assertNull(this.testControl);
         this.testControl = new Control();
         assertNotNull(this.testControl);
-        assertEquals(this.testControl.getSelectedDepartment().getName(), null);
+        assertEquals(this.testControl.getDepartment().getName(), null);
         String testDept = "test Dep";
-        testControl.setSelectedDepartment(testDept);
-        assertEquals(testControl.getSelectedDepartment().getName(), testDept);
+        testControl.setDepartment(testDept);
+        assertEquals(testControl.getDepartment().getName(), testDept);
     }
 
     /**
      * Test of setSelectedEmployee method, of class Control.
      */
     @Test
-    public void testSetSelectedEmployee() 
+    public void testSetEmployee() 
     {
         System.out.println("test -> setSelectedEmployee(): ");
         this.testControl = new Control();
-        String testEmpl = "gaga";
-        int idNum = 3;
-        this.testControl.setSelectedEmployee(idNum);
-        System.out.println(this.testControl.getSelectedEmployee().getSecondName());
-        assertEquals(this.testControl.getSelectedEmployee().getSecondName(), testEmpl);
+        String testEmpl = "Doe";
+        int idNum = 1;
+        this.testControl.setEmployee(idNum);
+        System.out.println(this.testControl.getEmployee().getSecondName());
+        assertEquals(this.testControl.getEmployee().getSecondName(), testEmpl);
     }
 
     /**
@@ -79,8 +83,8 @@ public class ControlTest {
         assertNotNull(this.testControl);
         String testBus = "business";
         assertEquals(this.testControl.addBusiness("business"),true);
-        this.testControl.setSelectedBusiness(testBus);
-        assertEquals(this.testControl.getSelectedBusiness().getName(), testBus);
+        this.testControl.setBusiness(testBus);
+        assertEquals(this.testControl.getBusiness().getName(), testBus);
     }
 
     
@@ -96,8 +100,8 @@ public class ControlTest {
         assertNotNull(this.testControl);
         String testDept = "department";
         assertEquals(this.testControl.addDepartment(testDept),true);
-        this.testControl.setSelectedDepartment(testDept);
-        assertEquals(this.testControl.getSelectedDepartment().getName(), testDept);        
+        this.testControl.setDepartment(testDept);
+        assertEquals(this.testControl.getDepartment().getName(), testDept);        
 
     }
 
@@ -111,9 +115,9 @@ public class ControlTest {
         assertNull(this.testControl);
         this.testControl = new Control();
         assertNotNull(this.testControl);
-        String testName = "lady";
-        this.testControl.setSelectedEmployee(3);
-        assertEquals(this.testControl.getSelectedEmployee().getFirstName(), testName); 
+        String testName = "John";
+        this.testControl.setEmployee(1);
+        assertEquals(this.testControl.getEmployee().getFirstName(), testName); 
 
     }
 
@@ -179,7 +183,7 @@ public class ControlTest {
     {
         Control aControl = new Control();        
         aControl.addEmployee(new Department("Finance"), new Business("huxley"), "firstName", "secondName");
-        assertEquals(aControl.getSelectedEmployee().getFirstName(),"firstName");
+        assertEquals(aControl.getEmployee().getFirstName(),"firstName");
         assertEquals(aControl.removeEmployee(),true);
     }
     
@@ -225,9 +229,64 @@ public class ControlTest {
     
     
     @Test 
-    public void countDepartments()
+    public void countDepartments() throws MalformedURLException
     {
         Control aCont = new Control();
         assertEquals(aCont.countDepartments(),0);
     }
+    
+    @Test
+    public void TestaddSocialMedia() throws MalformedURLException
+    {
+        Control aCont = new Control();
+        SocialMedia sm = new SocialMedia("Test media", new URL("http://www.testyurl.com"));
+        assertEquals(aCont.getSocialMedia(), null);
+        sm.save();
+        assertEquals(sm.isSaved(), true);
+        aCont.setSocialMedia(sm);
+        //Check that object has been created
+        assertNotNull(aCont.getSocialMedia());
+        //Test id has been retrrieved and set
+        assertNotEquals(aCont.getSocialMedia().getId(),0);
+        System.out.println("AddSocialMedia(): "+aCont.getSocialMedia().getName());   
+        sm.isSaved();
+        assertEquals(sm.deleteEntry(), true);    
+    }
+    
+    @Test 
+    public void TestAddSocialMediaAccount() throws MalformedURLException
+    {
+        Control aControl = new Control();
+        Business bus =  new Business("huxley");
+        Department dept = new Department("Finance");
+        bus.save();
+        dept.save();     
+        bus.isSaved();
+        dept.isSaved();
+        
+        aControl.addEmployee(dept, bus, "firstName", "secondName");
+        assertEquals(aControl.getEmployee().getFirstName(),"firstName");
+        
+        URL testURL =  new URL("http://www.bhjghbhjbhj.com");
+        URL testURLAcc =  new URL("http://www.bhjghbhjbhj.com/user");
+
+        SocialMedia sm = new SocialMedia("Test88media", testURL);
+        aControl.addSocialMedia(sm);
+        
+        assertEquals(aControl.addSocialMediaAccount("helper", testURLAcc, "Password"), true) ;
+        assertNotNull(sm.getId());
+    }
+    
+    @Test
+    public void warningMessage()
+    {
+        Control aControl = new Control();
+        assertEquals(aControl.warningMessage("no"), false);
+        assertEquals(aControl.warningMessage("n"), false);
+        assertEquals(aControl.warningMessage("No"), false);
+        assertEquals(aControl.warningMessage("y"), true);
+        assertEquals(aControl.warningMessage("Y"), true);
+        assertEquals(aControl.warningMessage("Yes"), true);
+    }
+            
 }

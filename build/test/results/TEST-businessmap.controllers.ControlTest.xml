@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="2" hostname="erode-Laptop" name="businessmap.controllers.ControlTest" skipped="0" tests="19" time="0.287" timestamp="2017-07-10T17:51:47">
+<testsuite errors="1" failures="3" hostname="erode-Laptop" name="businessmap.controllers.ControlTest" skipped="0" tests="22" time="0.303" timestamp="2017-07-27T14:01:34">
   <properties>
     <property name="netbeans.autoupdate.country" value="US" />
     <property name="nb.wait.for.caches" value="true" />
@@ -55,7 +55,7 @@
     <property name="copylibs.rebase" value="true" />
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner businessmap.controllers.ControlTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/erode/NetBeansProjects/businessMap/build/test/results/TEST-businessmap.controllers.ControlTest.xml crashfile=/home/erode/NetBeansProjects/businessMap/build/junitvmwatcher4682409454214004961.properties propsfile=/home/erode/NetBeansProjects/businessMap/build/junit7876026382242889439.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner businessmap.controllers.ControlTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/erode/NetBeansProjects/businessMap/build/test/results/TEST-businessmap.controllers.ControlTest.xml crashfile=/home/erode/NetBeansProjects/businessMap/build/junitvmwatcher5421208815010639679.properties propsfile=/home/erode/NetBeansProjects/businessMap/build/junit1586164008623461800.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="jnlp.descriptor" value="application" />
@@ -66,7 +66,7 @@
     <property name="libs.javaee-endorsed-api-7.0.javadoc" value="/home/erode/netbeans-8.2/enterprise/docs/javaee-doc-api.jar" />
     <property name="libs.jaxws21.javadoc" value="/home/erode/netbeans-8.2/java/docs/jaxws-api-doc.zip" />
     <property name="socksProxyPort" value="0" />
-    <property name="includes" value="**" />
+    <property name="includes" value="businessmap/controllers/**/*Test.java" />
     <property name="user.country" value="US" />
     <property name="manifest.file" value="manifest.mf" />
     <property name="addExports:java.desktop/sun.awt" value="ALL-UNNAMED" />
@@ -103,6 +103,7 @@
     <property name="libs.javaee-endorsed-api-7.0.src" value="" />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="libs.jaxb.javadoc" value="/home/erode/netbeans-8.2/ide/docs/jaxb-api-doc.zip" />
+    <property name="org.openide.awt.SwingBrowserImpl.do-not-block-awt" value="false" />
     <property name="ant.home" value="/home/erode/netbeans-8.2/extide/ant" />
     <property name="libs.junit_4.src" value="/home/erode/netbeans-8.2/platform/docs/junit-4.12-sources.jar" />
     <property name="libs.testng.classpath" value="/home/erode/netbeans-8.2/platform/modules/ext/testng-6.8.1-dist.jar" />
@@ -220,7 +221,6 @@
     <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="libs.DataBindingME-SVG.src" value="/home/erode/netbeans-8.2/mobility/sources/netbeans_databindingme_svg-src.zip" />
     <property name="dist.jar" value="dist/businessMap.jar" />
-    <property name="netbeans.automatic.build" value="true" />
     <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
     <property name="ant.project.name" value="businessMap" />
     <property name="netbeans.hash.code" value="unique=NB_EXTIDE_GFMOD_JAVA_WEBCOMMON_WEBEE0ec30b7a5-8ded-4b0f-b54d-f06eafb8f137_2f2caadb-947b-43ed-97df-875f335d7f30" />
@@ -303,7 +303,7 @@
     <property name="libs.MySQLDriver.src" value="" />
     <property name="build.test.results.dir" value="build/test/results" />
     <property name="java.runtime.version" value="1.8.0_131-8u131-b11-0ubuntu1.16.04.2-b11" />
-    <property name="jna.platform.library.path" value="/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:/lib64:/usr/lib:/lib:/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu/i686/sse2:/lib32:/usr/lib/i386-linux-gnu/sse2:/usr/lib32:/usr/lib/x86_64-linux-gnu/libfakeroot:/usr/lib/x86_64-linux-gnu/mesa-egl:/usr/lib/x86_64-linux-gnu/mesa:/usr/lib/i386-linux-gnu/mesa" />
+    <property name="jna.platform.library.path" value="/usr/lib/x86_64-linux-gnu:/lib/x86_64-linux-gnu:/usr/lib64:/lib64:/usr/lib:/lib:/usr/lib/i386-linux-gnu:/lib/i386-linux-gnu:/usr/lib/i386-linux-gnu/i686/sse2:/lib32:/usr/lib32:/usr/lib/i386-linux-gnu/sse2:/usr/lib/x86_64-linux-gnu/libfakeroot:/usr/lib/x86_64-linux-gnu/mesa-egl:/usr/lib/x86_64-linux-gnu/mesa:/usr/lib/i386-linux-gnu/mesa" />
     <property name="default.javac.target" value="1.8" />
     <property name="libs.junit_4.classpath" value="/home/erode/netbeans-8.2/platform/modules/ext/junit-4.12.jar" />
     <property name="user.timezone" value="" />
@@ -365,73 +365,96 @@
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="/home/erode/netbeans-8.2/enterprise/docs/javaee-doc-api.jar" />
   </properties>
-  <testcase classname="businessmap.controllers.ControlTest" name="testGetEmployees_Department" time="0.001" />
-  <testcase classname="businessmap.controllers.ControlTest" name="testSetSelectedBusiness" time="0.066" />
+  <testcase classname="businessmap.controllers.ControlTest" name="testGetEmployees_Department" time="0.0" />
+  <testcase classname="businessmap.controllers.ControlTest" name="testSetSelectedBusiness" time="0.068" />
   <testcase classname="businessmap.controllers.ControlTest" name="testGetDepartments_Business" time="0.0" />
+  <testcase classname="businessmap.controllers.ControlTest" name="testSetEmployee" time="0.005">
+    <failure message="expected:&lt;[Rinder]&gt; but was:&lt;[Doe]&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;[Rinder]&gt; but was:&lt;[Doe]&gt;
+	at businessmap.controllers.ControlTest.testSetEmployee(ControlTest.java:71)
+</failure>
+  </testcase>
   <testcase classname="businessmap.controllers.ControlTest" name="testGetEmployee" time="0.0" />
-  <testcase classname="businessmap.controllers.ControlTest" name="testRemoveEmployee" time="0.035" />
+  <testcase classname="businessmap.controllers.ControlTest" name="testRemoveEmployee" time="0.012" />
   <testcase classname="businessmap.controllers.ControlTest" name="testGetEmployees_0args" time="0.0" />
-  <testcase classname="businessmap.controllers.ControlTest" name="testAddDepartment" time="0.032" />
+  <testcase classname="businessmap.controllers.ControlTest" name="testAddDepartment" time="0.01" />
   <testcase classname="businessmap.controllers.ControlTest" name="testGetDepartments" time="0.0" />
   <testcase classname="businessmap.controllers.ControlTest" name="testSetSelectedDepartment" time="0.001" />
   <testcase classname="businessmap.controllers.ControlTest" name="testGetBusinesses" time="0.0" />
-  <testcase classname="businessmap.controllers.ControlTest" name="testAddEmployee" time="0.031" />
-  <testcase classname="businessmap.controllers.ControlTest" name="countDepartments" time="0.001" />
-  <testcase classname="businessmap.controllers.ControlTest" name="testGetSelectedBusiness" time="0.049" />
-  <testcase classname="businessmap.controllers.ControlTest" name="testSetSelectedEmployee" time="0.003">
-    <failure message="expected:&lt;null&gt; but was:&lt;gaga&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;null&gt; but was:&lt;gaga&gt;
-	at businessmap.controllers.ControlTest.testSetSelectedEmployee(ControlTest.java:67)
+  <testcase classname="businessmap.controllers.ControlTest" name="TestAddSocialMediaAccount" time="0.01">
+    <failure message="expected:&lt;false&gt; but was:&lt;true&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;false&gt; but was:&lt;true&gt;
+	at businessmap.controllers.ControlTest.TestAddSocialMediaAccount(ControlTest.java:276)
 </failure>
   </testcase>
-  <testcase classname="businessmap.controllers.ControlTest" name="testGetSelectedDepartment" time="0.006" />
+  <testcase classname="businessmap.controllers.ControlTest" name="testAddEmployee" time="0.015" />
+  <testcase classname="businessmap.controllers.ControlTest" name="countDepartments" time="0.001">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at businessmap.controllers.Control.countDepartments(Control.java:446)
+	at businessmap.controllers.ControlTest.countDepartments(ControlTest.java:235)
+</error>
+  </testcase>
+  <testcase classname="businessmap.controllers.ControlTest" name="testGetSelectedBusiness" time="0.043" />
+  <testcase classname="businessmap.controllers.ControlTest" name="TestaddSocialMedia" time="0.032" />
+  <testcase classname="businessmap.controllers.ControlTest" name="warningMessage" time="0.0" />
+  <testcase classname="businessmap.controllers.ControlTest" name="testGetSelectedDepartment" time="0.002" />
   <testcase classname="businessmap.controllers.ControlTest" name="testPrintBusinesses" time="0.0" />
-  <testcase classname="businessmap.controllers.ControlTest" name="testAddBusiness" time="0.01" />
-  <testcase classname="businessmap.controllers.ControlTest" name="removeBusiness" time="0.01" />
+  <testcase classname="businessmap.controllers.ControlTest" name="testAddBusiness" time="0.031" />
+  <testcase classname="businessmap.controllers.ControlTest" name="removeBusiness" time="0.032" />
   <testcase classname="businessmap.controllers.ControlTest" name="testGetSelectedEmployee" time="0.001">
-    <failure message="expected:&lt;null&gt; but was:&lt;lady&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;null&gt; but was:&lt;lady&gt;
-	at businessmap.controllers.ControlTest.testGetSelectedEmployee(ControlTest.java:116)
+    <failure message="expected:&lt;[Adam]&gt; but was:&lt;[John]&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;[Adam]&gt; but was:&lt;[John]&gt;
+	at businessmap.controllers.ControlTest.testGetSelectedEmployee(ControlTest.java:120)
 </failure>
   </testcase>
   <system-out><![CDATA[test -> setSelectedBusiness(): 
 The name: test  does not exist in DB false
+test -> setSelectedEmployee(): 
+Rinder
 name saved
-TEST DELETEENTRY QUERY DELETE FROM 'Employee' WHERE idNum = '2'
+TEST DELETEENTRY QUERY DELETE FROM 'Employee' WHERE idNum = '15'
 firstName secondName is deleted
 test -> getDepartments(): 
 name saved
 aDept
-Is saved under the name: aDept with the id: 2
-TEST DELETEENTRY QUERY DELETE FROM 'Department' WHERE idNum = '2'
+Is saved under the name: aDept with the id: 10
+TEST DELETEENTRY QUERY DELETE FROM 'Department' WHERE idNum = '10'
 aDept is deleted
 test -> getDepartments(): 
 test -> setSelectedDepartment(): 
 The name: test Dep does not exist in DB false
+connection failed , java.sql.SQLException: UNIQUE constraint failed: Business.name
+connection failed , java.sql.SQLException: UNIQUE constraint failed: Department.name
+huxley
+Is saved under the name: huxley with the id: 2
+Finance
+Is saved under the name: Finance with the id: 4
 name saved
-TEST DELETEENTRY QUERY DELETE FROM 'Employee' WHERE idNum = '3'
+connection failed , java.sql.SQLException: UNIQUE constraint failed: Social_Media.link
+java.lang.NullPointerException
+name saved
+TEST DELETEENTRY QUERY DELETE FROM 'Employee' WHERE idNum = '17'
 firstName secondName is deleted
 test -> getSelectedBusiness(): 
+connection failed , java.sql.SQLException: UNIQUE constraint failed: Business.name
+business
+Is saved under the name: business with the id: 3
+business
+Is saved under the name: business with the id: 3
 name saved
-business
-Is saved under the name: business with the id: 3
-business
-Is saved under the name: business with the id: 3
-test -> setSelectedEmployee(): 
-null
+AddSocialMedia(): Test media
 test -> getSelectedDepartment(): 
-name saved
+connection failed , java.sql.SQLException: UNIQUE constraint failed: Department.name
 department
-Is saved under the name: department with the id: 3
+Is saved under the name: department with the id: 5
 department
-Is saved under the name: department with the id: 3
+Is saved under the name: department with the id: 5
 name saved
 ABusiness
-Is saved under the name: ABusiness with the id: 4
-TEST DELETEENTRY QUERY DELETE FROM 'Business' WHERE idNum = '4'
+Is saved under the name: ABusiness with the id: 10
+TEST DELETEENTRY QUERY DELETE FROM 'Business' WHERE idNum = '10'
 ABusiness is deleted
 name saved
 ABusiness
-Is saved under the name: ABusiness with the id: 5
-TEST DELETEENTRY QUERY DELETE FROM 'Business' WHERE idNum = '5'
+Is saved under the name: ABusiness with the id: 11
+TEST DELETEENTRY QUERY DELETE FROM 'Business' WHERE idNum = '11'
 ABusiness is deleted
 test -> getSelectedEmployee(): 
 ]]></system-out>

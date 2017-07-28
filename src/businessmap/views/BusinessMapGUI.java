@@ -29,16 +29,20 @@ public class BusinessMapGUI {
         dbConnection dbCon = new dbConnection();
         
         //needs to be implemented correctly
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
+        //Scanner reader = new Scanner(System.in);  // Reading from System.in
         System.out.println("Enter a db password: ");
-        dbCon.setPassword(reader.toString());
-       // String pass = reader.next();
-       // reader.nextLine();
+        //dbCon.setPassword(reader.toString());
+        //String pass = reader.next();
+        //reader.nextLine();
        // System.out.println(pass);
         //dbCon.dropEmployeeTable();
         //dbCon.dropDepartmentTable();
         //dbCon.dropBusinessTable();
-        dbCon.createNewTables();
+        //dbCon.dropSocialMediaTable();
+        //dbCon.dropdropSocialMediaAccountTable();
+        //dbCon.createNewTables();
+
+      
         Control aControl = new Control();
         aControl.addBusiness("Huxley");
        
@@ -52,7 +56,8 @@ public class BusinessMapGUI {
         //Create Tables
         
 
-        
+        System.out.println("========  Social Media Table ========");
+        dbCon.checkTable("Social_Media");
         System.out.println("========  Business Table  ========");
         dbCon.checkTable("Business");
         System.out.println("========  Employee Table  ========");
@@ -61,10 +66,7 @@ public class BusinessMapGUI {
         dbCon.checkTable("Department");
         System.out.println("========  Social Media Account Table ========");
         dbCon.checkTable("Social_Media_User");
-        System.out.println("========  Social Media Table ========");
-        dbCon.checkTable("Social_Media");
 
-        
 
 
     }

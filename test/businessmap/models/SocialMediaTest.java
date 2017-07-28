@@ -113,7 +113,7 @@ public class SocialMediaTest {
         SocialMedia sm = new SocialMedia("testMedia", aUrl);
         assertEquals(sm.save(), true);
         assertEquals(sm.isSaved(), true);
-        sm.deleteEntry();
+        assertEquals(sm.deleteEntry(),true);
     }
     
     @Test 

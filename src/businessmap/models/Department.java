@@ -111,5 +111,40 @@ public class Department extends Business implements DepartmentIF
             System.out.println("An error occured " + exception);
         }
     }
+    
+    
+    public Department getDepartmentDB()
+    {
+        Department aDept = new Department();
+        try
+        {
+            String sql = "SELECT * From Department WHERE idNum == '" 
+                    +this.getIdNum()+ "'";
+            try
+            {
+                dbConnection dbCon = new dbConnection();
+                Statement stmt = dbCon.getConnection().createStatement();
+                ResultSet returnedTable = stmt.executeQuery(sql);
+                while (returnedTable.next())
+                {
+                    System.out.println("TEST pop EMployee - id: " + returnedTable.getInt("idNum"));
+                    //employId = returnedTable.getInt("idNum");
+                    this.setName(returnedTable.getString("name"));
+                }
+                dbCon.getConnection().close();
+                aDept = new Department(this.getIdNum(), this.getName());
+
+            }
+            catch (SQLException exception)   
+            {
+                System.out.println("An error occured: " + exception);  
+            }   
+        }
+        catch(NullPointerException exception)
+        {
+            System.out.println("An error occured " + exception);
+        }
+        return aDept;
+    }
       
 }

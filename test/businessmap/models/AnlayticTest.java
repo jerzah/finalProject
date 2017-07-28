@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package businessmap.models;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
@@ -56,27 +57,27 @@ public class AnlayticTest {
     }
     
     @Test
-    public void TestiniCount()
+    public void TestiniCount() throws MalformedURLException
     {
         Business aBus = new Business("Huxley");
         Analytics testAn = new Analytics();
         assertEquals(testAn.getBusiness(), null);
         testAn.setBusiness(aBus);
         assertEquals(testAn.getBusiness(), aBus);
-
         aBus.isSaved();
+        
         aBus.populateDepartments();
+        testAn.iniCount();
+
         assertEquals(testAn.getBusiness(), aBus);
-        Map<String, Integer> aMap = new HashMap<>();
         Integer busCount = 1;
         Integer empCount = 2;
 
-        assertEquals(testAn.iniCount().getClass(), aMap.getClass());
-        assertEquals(testAn.iniCount().containsKey("Departments"),true);
-        assertEquals(testAn.iniCount().containsKey("Employees"),true);
+        assertEquals(testAn.getaMap().containsKey("departments"),true);
+        assertEquals(testAn.getaMap().containsKey("employees"),true);
         
-        assertEquals(testAn.iniCount().get("Departments"), busCount );
-        assertEquals(testAn.iniCount().get("Employees"), empCount );
+        assertEquals(testAn.getaMap().get("departments"), busCount );
+        assertEquals(testAn.getaMap().get("employees"), empCount );
 
 
 

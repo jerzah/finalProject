@@ -26,10 +26,26 @@ public class SocialMedia implements SocialMediaIF{
     {
         
     }
+     
+    public SocialMedia(int idNum)
+    {
+        this.id = idNum;
+    }
 
+        public SocialMedia(String aName)
+    {
+        this.name = aName;
+    }
     
     public SocialMedia(String aName, URL aURL)
     {
+        this.name = aName;
+        this.address = aURL;
+    }
+
+    
+    public SocialMedia(int anId, String aName, URL aURL) {
+        this.id = anId;
         this.name = aName;
         this.address = aURL;
     }
@@ -77,7 +93,6 @@ public class SocialMedia implements SocialMediaIF{
                 System.out.println("name saved");
                 ResultSet genKey = stmt.getGeneratedKeys();
                 result = true;
-
                 try
                 {
                     if (genKey.next())
@@ -122,7 +137,7 @@ public class SocialMedia implements SocialMediaIF{
         }
         catch (SQLException sqlexcept)
         {
-            System.out.println("save failed, "  + sqlexcept);   
+            System.out.println("error, "  + sqlexcept);   
         }
         return result;
     }
