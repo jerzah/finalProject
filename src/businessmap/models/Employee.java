@@ -28,6 +28,7 @@ private Department departnment;
 private List<String>userNames ; //List of usernames
 private String[] address;
 private List<SocialMediaAccount> smAccountList;
+private PersonalityAccess personality;
 //private String phoneNumber;
 //private InetAddress ipAddress;
 
@@ -162,6 +163,16 @@ private List<SocialMediaAccount> smAccountList;
         return this.userNames;
     }
     
+    
+    public PersonalityAccess getPersonality() 
+    {
+        return personality;
+    }
+
+    public void setPersonality(PersonalityAccess personality) 
+    {
+        this.personality = personality;
+    }
     //***DATABASE OPERATIONS***
 
     /**
@@ -176,10 +187,12 @@ private List<SocialMediaAccount> smAccountList;
        // {
             Statement stmt = null;
             String sqlQuery = "INSERT INTO '" +this.getClass().getSimpleName()  + 
-                              "' (first_name, second_name, business_id, department_id)" +
+                              "' (first_name, second_name, personality, business_id, department_id)" +
                                   "VALUES ('"+ this.getFirstName() +"', '"+ this.getSecondName()+"', '"
+                               +this.getPersonality().getPersonality()+"', '"
                               +this.business.getIdNum()+"', '"
                               +this.departnment.getIdNum()+"' )";
+            
             try
             {
                 dbConnection dbCon = new dbConnection();
@@ -233,6 +246,7 @@ private List<SocialMediaAccount> smAccountList;
                         anEmployee.setFirstName(returnedTable.getString("first_name"));
                         //anEmployee.setFirstName(returnedTable.getString("first_name"));
                         anEmployee.setSecondName(returnedTable.getString("second_name"));
+                        anEmployee.setPersonality(new PersonalityAccess(Personality.valueOf(returnedTable.getString("personality"))));
                         anEmployee.setIdNum(returnedTable.getInt("idNum"));
                     }
                 dbCon.getConnection().close();
@@ -244,6 +258,8 @@ private List<SocialMediaAccount> smAccountList;
         return anEmployee;
     
     }
+
+
       
     
     public boolean deleteEntry()
@@ -296,4 +312,5 @@ private List<SocialMediaAccount> smAccountList;
     }
     
 
+        
 }

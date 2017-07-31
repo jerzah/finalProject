@@ -36,11 +36,11 @@ public class SocialMediaAccount extends SocialMedia implements SocialMediaAccoun
     }
     
     
-    public SocialMediaAccount(int id, String userName, SocialMedia sMediaAcc)
+    public SocialMediaAccount(int id, String userName, SocialMedia sMedia)
     {
-        super(userName, sMediaAcc.getAddress());
+        super(userName, sMedia.getAddress());
         super.setId(id);
-        this.account = sMediaAcc;
+        this.account = sMedia;
     }
          
         public SocialMediaAccount(int id, String userName, SocialMedia sMediaAcc, URL aURL)
@@ -50,11 +50,20 @@ public class SocialMediaAccount extends SocialMedia implements SocialMediaAccoun
         this.account = sMediaAcc;
 
     }
-         
-    public SocialMediaAccount(Employee anEmp, String userName, SocialMedia sMediaAcc) 
+        
+    public SocialMediaAccount(Employee anEmp, String userName, String pass,  SocialMedia sMedia, URL aURL)
     {
-        super(userName, sMediaAcc.getAddress());
-        this.account = sMediaAcc;
+        super(userName, aURL);
+        this.aEmployee = anEmp;
+        this.empId = anEmp.getIdNum();
+        this.account = sMedia;
+        this.password = pass;
+    }
+         
+    public SocialMediaAccount(Employee anEmp, String userName, SocialMedia sMedia) 
+    {
+        super(userName, sMedia.getAddress());
+        this.account = sMedia;
         this.aEmployee = anEmp;
     }
         
@@ -147,7 +156,7 @@ public class SocialMediaAccount extends SocialMedia implements SocialMediaAccoun
                 stmt = dbCon.getConnection().createStatement();
                 stmt.executeUpdate(sqlQuery);
                 ResultSet genKey = stmt.getGeneratedKeys();
-                result = true;
+                //result = true;
                 try
                 {
                     if (genKey.next())

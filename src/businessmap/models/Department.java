@@ -147,4 +147,33 @@ public class Department extends Business implements DepartmentIF
         return aDept;
     }
       
+    
+    @Override
+    public boolean deleteEntry()
+    {
+        String deleteQuery = "DELETE FROM '" + this.getClass().getSimpleName()  + "' WHERE idNum = '" + this.getIdNum()+ "'";
+        Statement stmt = null;
+        if(this.getIdNum()!=0)
+        {
+            try
+            {
+               System.out.println("TEST DELETEENTRY QUERY "+deleteQuery);
+
+                dbConnection dbCon = new dbConnection();
+                stmt = dbCon.getConnection().createStatement();
+                stmt.executeUpdate(deleteQuery);
+                dbCon.getConnection().close();
+                System.out.println(this.getName() + " Department ?is deleted");
+                this.setIdNum(0);
+                this.setName(""); 
+                return true;
+            }
+            catch (SQLException sqlexcept)
+            {
+                System.out.println("connection failed , "  + sqlexcept);
+            }
+        }
+        return false;
+    }
+    
 }

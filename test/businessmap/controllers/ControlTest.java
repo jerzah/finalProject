@@ -8,6 +8,8 @@ package businessmap.controllers;
 import businessmap.models.Business;
 import businessmap.models.Department;
 import businessmap.models.Employee;
+import businessmap.models.Personality;
+import businessmap.models.PersonalityAccess;
 import businessmap.models.SocialMedia;
 import businessmap.models.SocialMediaAccount;
 import java.net.MalformedURLException;
@@ -272,10 +274,29 @@ public class ControlTest {
 
         SocialMedia sm = new SocialMedia("Test88media", testURL);
         aControl.addSocialMedia(sm);
-        
-        assertEquals(aControl.addSocialMediaAccount("helper", testURLAcc, "Password"), true) ;
+        SocialMediaAccount sma = new SocialMediaAccount(testURLAcc);
+        sma.setAddress(testURLAcc);
+        assertEquals(aControl.addSocialMediaAccount(aControl.getEmployee(), sma, "helper", testURLAcc, "Password"), true);
         assertNotNull(sm.getId());
     }
+    @Test
+    public void testDisplayPersonalies()
+    {
+        Control aControl = new Control();
+        PersonalityAccess assertive = new PersonalityAccess(Personality.ASSERTIVE); 
+        PersonalityAccess amiable = new PersonalityAccess(Personality.AMIABLE); 
+        PersonalityAccess expressive = new PersonalityAccess(Personality.EXPRESSIVE); 
+        PersonalityAccess analytical = new PersonalityAccess(Personality.ANALYTICAL); 
+
+                
+        assertEquals(aControl.displayPersonalies().get(0).getPersonality(),assertive.getPersonality());
+        assertEquals(aControl.displayPersonalies().get(1).getPersonality(),amiable.getPersonality() );
+        assertEquals(aControl.displayPersonalies().get(2).getPersonality(), expressive.getPersonality());
+        assertEquals(aControl.displayPersonalies().get(3).getPersonality(), analytical.getPersonality());
+
+
+    }
+    
     
     @Test
     public void warningMessage()

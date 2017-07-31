@@ -53,6 +53,7 @@ public class dbConnection {
                 "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
                 "first_name VARCHAR(32) NOT NULL, \n" +
                 "second_name VARCHAR(32) NOT NULL, \n" +
+                "personality VARCHAR(32) NOT NULL, \n" +
                 "business_id INTEGER NOT NULL, \n" + 
                 "department_id INTEGER NOT NULL, \n" +
                 "FOREIGN KEY(business_id) REFERENCES Business(idNum), \n" +
@@ -73,6 +74,18 @@ public class dbConnection {
                 "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
                 "name VARCHAR(32) NOT NULL UNIQUE, \n" +
                 "link VARCHAR(64) NOT NULL UNIQUE)";
+        
+        String createPositionTable = "CREATE TABLE IF NOT EXISTS Position" + 
+                "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+                "name VARCHAR(32) NOT NULL UNIQUE)";
+       
+        String createPersonalityTable = "CREATE TABLE IF NOT EXISTS Personality" + 
+                "(idNum INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \n" +
+                "personality VARCHAR(32) NOT NULL UNIQUE, \n " +
+                "employee_id VARCHAR(32) NOT NULL UNIQUE) NOT NULL, \n" +
+                "FOREIGN KEY(employee_id) REFERENCES Employee(idNum)";
+
+
 
         try{
             Statement stmt = null;
@@ -82,6 +95,10 @@ public class dbConnection {
             stmt.executeUpdate(createEmployeeTable);
             stmt.executeUpdate(createUserSocialMediaAccountTable);
             stmt.executeUpdate(createSocialMediaTable);
+            stmt.executeUpdate(createPositionTable);
+            stmt.executeUpdate(createPersonalityTable);
+
+
 
         } catch (SQLException exception)
         {
@@ -106,6 +123,33 @@ public class dbConnection {
         }
     }
     
+        public void dropPersonaalityTable()
+    {
+        String DropBusinessTable = "DROP TABLE Personality";
+        try{
+            Statement stmt = null;
+            stmt = this.con.createStatement();
+            stmt.executeUpdate(DropBusinessTable);
+        } catch (SQLException exception)
+        {
+            System.out.println("An error occured: " + exception);
+        }
+    }
+    
+        public void dropPositionTable()
+    {
+        String DropBusinessTable = "DROP TABLE Position";
+        try{
+            Statement stmt = null;
+            stmt = this.con.createStatement();
+            stmt.executeUpdate(DropBusinessTable);
+        } catch (SQLException exception)
+        {
+            System.out.println("An error occured: " + exception);
+        }
+    }
+        
+        
     /**
      * THIS WILL DROP THE BUSINESS TABEL AND COULD CORRUPT DB
      * ONLY TO USED WHILE BUILDING
@@ -220,6 +264,7 @@ public class dbConnection {
                     //returnedTable.getString("name") + "\n");// + "\n" +
                     returnedTable.getString("first_name") + "\t " +
                     returnedTable.getString("second_name") + "\t " +
+                    returnedTable.getString("personality") + "\t " +
                     returnedTable.getInt("business_id") + "\t " +
                     returnedTable.getInt("department_id") + "\n" );
                 }

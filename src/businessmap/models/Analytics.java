@@ -5,8 +5,11 @@
  */
 package businessmap.models;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,17 +27,22 @@ public class Analytics {
     private int passwords;
     private int socialMediaAccounts;
     private Map<String, Integer> aMap;
+    
+    String csvFile; //= getClass().getProtectionDomain().getCodeSource().getLocation().getPath() + "./test.csv";
+    FileWriter writer;
 
    
         
-    public Analytics()
+    public Analytics() 
     {
         this.aMap = new HashMap<>();
         this.smAccounts = new ArrayList();
+        this.aBusiness = new Business();
     }
     
     public Analytics(Business aBus)
     {
+        //this.writer = new FileWriter(this.csvFile);
         this.aBusiness = aBus;
         this.smAccounts = new ArrayList();
         this.aMap = new HashMap<>();
@@ -48,6 +56,14 @@ public class Analytics {
     private void setDeptCount(int anAmount)
     {
         this.deptCount = anAmount;
+    }
+
+    public String getCsvFile() {
+        return csvFile;
+    }
+
+    public void setCsvFile(String csvFile) {
+        this.csvFile = csvFile;
     }
     
     private void setEmpCount(int anAmount)
@@ -184,4 +200,40 @@ public class Analytics {
      //return aMap;
    
    }
+   
+   
+   
+   public void exportStats() throws IOException
+   {
+       try
+       {
+       this.writer = new FileWriter(this.csvFile);
+       this.writer.append(this.aBusiness.getName());
+       this.writer.append('\n');
+
+       for (String a : this.aMap.keySet())
+       {
+           
+            this.writer.append(a);
+            System.out.println(a);
+            this.writer.append(',');
+       }
+        this.writer.append('\n');
+        for (Integer i : this.aMap.values())
+        {
+            this.writer.append(i.toString());
+            System.out.println(i);
+            this.writer.append(',');
+        }
+        this.writer.flush();
+        this.writer.close();
+       }
+       catch (Exception anExcept)
+       {
+           System.out.println("ERROR: " + anExcept);
+       }
+   }
 }
+
+
+
